@@ -1,0 +1,302 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@company.com",
+      "phone": "0123456789",
+      "gender": "Male",
+      "dob": "1990-01-15",
+      "address": "123 Main St",
+      "department": "Engineering",
+      "position": "Developer",
+      "salary": 5000,
+      "status": "Active",
+      "avatar": null
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@company.com",
+      "phone": "0987654321",
+      "gender": "Female",
+      "dob": "1985-05-20",
+      "address": "456 Oak Ave",
+      "department": "HR",
+      "position": "Manager",
+      "salary": 4500,
+      "status": "Active",
+      "avatar": null
+    },
+    {
+      "id": 3,
+      "name": "Bob Johnson",
+      "email": "bob@company.com",
+      "phone": "0111111111",
+      "gender": "Male",
+      "dob": "1988-12-10",
+      "address": "789 Pine Rd",
+      "department": "Marketing",
+      "position": "Specialist",
+      "salary": 4000,
+      "status": "On Leave",
+      "avatar": null
+    }
+  ],
+  "departments": [
+    {
+      "id": 1,
+      "name": "Nhân sự"
+    },
+    {
+      "id": 2,
+      "name": "Công nghệ thông tin"
+    },
+    {
+      "id": 3,
+      "name": "Kế toán"
+    }
+  ],
+  "positions": [
+    {
+      "id": 1,
+      "name": "Quản lý"
+    },
+    {
+      "id": 2,
+      "name": "Nhân viên"
+    },
+    {
+      "id": 3,
+      "name": "Thực tập sinh"
+    }
+  ],
+  "leaves": [
+    {
+      "id": 1,
+      "employee": "John Doe",
+      "type": "Annual",
+      "start": "2024-01-20",
+      "end": "2024-01-22",
+      "status": "Pending"
+    },
+    {
+      "id": 2,
+      "employee": "Bob Johnson",
+      "type": "Sick",
+      "start": "2024-01-15",
+      "end": "2024-01-15",
+      "status": "Approved"
+    }
+  ],
+  "requests": [
+    {
+      "id": 1,
+      "employee": "John Doe",
+      "type": "Training",
+      "title": "React Course",
+      "status": "Approved",
+      "date": "2024-01-10"
+    },
+    {
+      "id": 2,
+      "employee": "Jane Smith",
+      "type": "Equipment",
+      "title": "New Monitor",
+      "status": "Pending",
+      "date": "2024-01-12"
+    }
+  ],
+  "attendance": [
+    {
+      "date": "2024-01-15",
+      "employee": "John Doe",
+      "status": "Present",
+      "timeIn": "09:00",
+      "timeOut": "17:30"
+    },
+    {
+      "date": "2024-01-15",
+      "employee": "Jane Smith",
+      "status": "Present",
+      "timeIn": "08:45",
+      "timeOut": "17:00"
+    },
+    {
+      "id": 1778731257991,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:00:57",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731259452,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:00:59",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731262319,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:02",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731262518,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:02",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731262656,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:02",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731264094,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:04",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731264270,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:04",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731264430,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:04",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731264871,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:04",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731265047,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:05",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731265215,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:05",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731279887,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:01:19",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731342799,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:02:22",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778731343374,
+      "employee": "John Doe",
+      "date": "2026-05-14",
+      "timeIn": "11:02:23",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778732341557,
+      "employee": "nguyễn tấn phát",
+      "date": "2026-05-14",
+      "timeIn": "11:19:01",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778732341742,
+      "employee": "nguyễn tấn phát",
+      "date": "2026-05-14",
+      "timeIn": "11:19:01",
+      "status": "Present",
+      "timeOut": null
+    },
+    {
+      "id": 1778732342010,
+      "employee": "nguyễn tấn phát",
+      "date": "2026-05-14",
+      "timeIn": "11:19:02",
+      "status": "Present",
+      "timeOut": null
+    }
+  ],
+  "performance": [
+    {
+      "id": 1,
+      "employee": "John Doe",
+      "kpi": 95,
+      "review": "Strong performance",
+      "score": 4.8,
+      "date": "2024-04-15"
+    },
+    {
+      "id": 2,
+      "employee": "Jane Smith",
+      "kpi": 88,
+      "review": "Good work",
+      "score": 4.2,
+      "date": "2024-04-10"
+    }
+  ],
+  "payroll": [
+    {
+      "id": 1,
+      "employee": "John Doe",
+      "basicSalary": 5000,
+      "bonus": 200,
+      "allowance": 150,
+      "deduction": 50,
+      "totalSalary": 5300,
+      "payDate": "2024-04-30"
+    },
+    {
+      "id": 2,
+      "employee": "Jane Smith",
+      "basicSalary": 4500,
+      "bonus": 150,
+      "allowance": 100,
+      "deduction": 40,
+      "totalSalary": 4710,
+      "payDate": "2024-04-30"
+    }
+  ]
+}

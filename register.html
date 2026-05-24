@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRM - Register</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-container">
+  <div class="auth-card auth-card--single">
+    <div class="auth-panel auth-panel-left">
+      <h1 class="auth-title">Create account</h1>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">Join our HR system</p>
+      
+      <form id="registerForm">
+      <div class="form-group">
+        <label class="label" for="regName">Full Name</label>
+        <input type="text" id="regName" class="input" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="label" for="regEmail">Email</label>
+        <input type="email" id="regEmail" class="input" required>
+      </div>
+      
+      <div class="form-group">
+        <label class="label" for="regPassword">Password</label>
+        <input type="password" id="regPassword" class="input" required minlength="6">
+      </div>
+      
+      <div class="form-group">
+        <label class="label" for="regConfirmPassword">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" class="input" required minlength="6">
+      </div>
+      
+      <div class="form-group">
+        <label class="label" for="regRole">Role</label>
+        <select id="regRole" class="select">
+          <option value="Employee">Employee</option>
+          <option value="HR" disabled>HR (not allowed)</option>
+
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+    <p class="auth-footer">
+      Already have an account? 
+      <a href="login.html" class="auth-link">Login here</a>
+    </p>
+
+    <div id="registerError" class="error-message"></div>
+    </div>
+    
+    <script type="module">
+      import { getCurrentUser, register } from './auth.js';
+
+      if (getCurrentUser()) {
+        window.location.href = 'index.html';
+      }
+      
+      document.getElementById('registerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const name = document.getElementById('regName').value;
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+        const role = document.getElementById('regRole').value;
+        const errorEl = document.getElementById('registerError');
+        
+        const result = await register(name, email, password, confirmPassword, role);
+
+        
+        if (result.success) {
+          // After register, go to home immediately.
+          window.location.href = 'index.html';
+        } else {
+          errorEl.textContent = result.error;
+          errorEl.style.display = 'block';
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>
+

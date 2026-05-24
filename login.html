@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý nhân viên - Đăng nhập</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="auth-container">
+  <div class="auth-card">
+    <div class="auth-panel auth-panel-left">
+      <div class="auth-topline">Quản lý nhân viên</div>
+      <div class="auth-heading">
+        <h1>LOGIN</h1>
+        <p>Đăng nhập để tiếp cận bảng điều khiển nhân sự.</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label class="label" for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" class="input" placeholder="Nhập email của bạn" required>
+        </div>
+        
+        <div class="form-group">
+          <label class="label" for="loginPassword">Mật khẩu</label>
+          <input type="password" id="loginPassword" class="input" placeholder="Nhập mật khẩu" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-login">Đăng nhập</button>
+      </form>
+
+      <p class="auth-footer">
+        Chưa có tài khoản? 
+        <a href="register.html" class="auth-link">Đăng ký tại đây</a>
+      </p>
+
+      <div id="loginError" class="error-message"></div>
+    </div>
+
+    <div class="auth-panel auth-panel-right">
+      <div class="side-card">
+        <div class="side-badge">HRM</div>
+        <div class="side-graphic">
+          <div class="lock-shape">
+            <div class="lock-body"></div>
+            <div class="lock-shackle"></div>
+            <div class="lock-check">✓</div>
+          </div>
+        </div>
+        <div class="side-text">
+          <h2>Đăng nhập an toàn</h2>
+          <p>Quản lý nhân sự, chấm công và phê duyệt yêu cầu ngay trong một nền tảng.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+import { getCurrentUser, login } from './auth.js';
+
+      if (getCurrentUser()) {
+        window.location.href = 'index.html';
+      }
+
+      document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const errorEl = document.getElementById('loginError');
+        const result = await login(email, password);
+        
+        if (result.success) {
+          const u = JSON.parse(localStorage.getItem('hrm_user') || 'null') || result.user;
+          // Normalize role for redirect safety
+          const role = String(u?.role || '').trim().toLowerCase();
+          window.location.href = (role === 'hr') ? 'index.html' : 'employee.html';
+        } else {
+          // show backend error clearly
+          errorEl.textContent = result.error || 'Login failed';
+          errorEl.style.display = 'block';
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRM - Employee</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    if (!localStorage.getItem('hrm_user')) {
+      window.location.href = 'login.html';
+    }
+    // If HR tries to open employee page, send back to admin.
+    try {
+      const u = JSON.parse(localStorage.getItem('hrm_user') || 'null');
+      if (u && u.role === 'HR') window.location.href = 'index.html';
+    } catch {}
+  </script>
+</head>
+<body class="app">
+  <header class="topbar">
+    <div class="header-left">
+      <div class="logo">HRM</div>
+    </div>
+    <div class="header-right">
+      <div class="notification-pill" role="button" aria-label="Notifications">
+        <span class="notification-icon">&#128276;</span>
+        <span class="notification-badge">3</span>
+      </div>
+      <div class="login-status" id="loginStatus">
+        <span id="userNameSpan"></span>
+      </div>
+      <div class="avatar-dropdown" id="avatarDropdown">
+        <div class="avatar" id="userAvatar">JD</div>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <div class="dropdown-item" id="profileBtn">Profile</div>
+          <div class="dropdown-item" id="logoutBtn">Logout</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <nav class="sidebar" id="sidebar">
+      <ul class="sidebar-nav">
+        <li class="sidebar-item active" data-page="profile">Profile</li>
+        <li class="sidebar-item" data-page="attendance">Attendance</li>
+        <li class="sidebar-item" data-page="leave">Leave</li>
+        <li class="sidebar-item" data-page="requests">Requests</li>
+        <li class="sidebar-item" data-page="payroll">Payroll</li>
+      </ul>
+    </nav>
+
+    <main class="main-content" id="mainContent">
+      <!-- Page content loaded here -->
+    </main>
+  </div>
+
+  <script>
+    if (!localStorage.getItem('hrm_user')) {
+      window.location.href = 'login.html';
+    }
+    // Ensure non-HR users.
+    try {
+      const u = JSON.parse(localStorage.getItem('hrm_user') || 'null');
+      if (u && u.role === 'HR') window.location.href = 'index.html';
+    } catch {}
+  </script>
+
+  <div class="modal-overlay" id="leaveModal">
+    <div class="modal">
+      <h2>Create Leave Request</h2>
+      <form id="leaveForm">
+        <div class="form-group">
+          <label class="label" for="leaveType">Leave Type</label>
+          <select id="leaveType" class="select">
+            <option value="annual">Annual Leave</option>
+            <option value="sick">Sick Leave</option>
+            <option value="personal">Personal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label" for="leaveStart">Start Date</label>
+          <input type="date" id="leaveStart" class="input" required>
+        </div>
+        <div class="form-group">
+          <label class="label" for="leaveEnd">End Date</label>
+          <input type="date" id="leaveEnd" class="input" required>
+        </div>
+        <div class="form-group">
+          <label class="label" for="leaveReason">Reason</label>
+          <textarea id="leaveReason" class="textarea" required></textarea>
+        </div>
+        <div style="display: flex; gap: var(--spacing-md); justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelLeave">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="requestModal">
+    <div class="modal">
+      <h2>Create Request</h2>
+      <form id="requestForm">
+
+        <div class="form-group">
+          <label class="label" for="requestType">Type</label>
+          <select id="requestType" class="select" required>
+            <option value="">Select type</option>
+            <option value="equipment">Equipment</option>
+            <option value="training">Training</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="label" for="requestTitle">Title</label>
+          <input type="text" id="requestTitle" class="input" required>
+        </div>
+        <div class="form-group">
+          <label class="label" for="requestDesc">Description</label>
+          <textarea id="requestDesc" class="textarea" required></textarea>
+        </div>
+
+        <div id="trainingFields" style="display: none;">
+          <div class="form-group">
+            <label class="label" for="courseName">Course Name</label>
+            <input type="text" id="courseName" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label" for="provider">Provider</label>
+            <input type="text" id="provider" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label" for="cost">Cost ($)</label>
+            <input type="number" id="cost" class="input" min="0">
+          </div>
+          <div class="form-group">
+            <label class="label" for="startDate">Start Date</label>
+            <input type="date" id="startDate" class="input">
+          </div>
+          <div class="form-group">
+            <label class="label" for="endDate">End Date</label>
+            <input type="date" id="endDate" class="input">
+          </div>
+        </div>
+
+        <div style="display: flex; gap: var(--spacing-md); justify-content: flex-end;">
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelRequest">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Submit Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Chat widget -->
+  <div class="chat-widget minimized" id="chatWidget" aria-label="Chat">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-bubble">💬</div>
+        <div class="chat-title">
+          <strong id="chatTitle">Chat</strong>
+          <span id="chatSubtitle">Phòng ban / 1-1</span>
+        </div>
+      </div>
+      <button class="chat-close" id="chatCloseBtn" type="button" aria-label="Close">×</button>
+    </div>
+    <div class="chat-body" id="chatBody" style="display:none;">
+      <div class="chat-sidebar">
+        <div class="chat-tab-btn active" id="chatTabDept" role="button" tabindex="0">Phòng ban</div>
+        <div class="chat-tab-btn" id="chatTabOne" role="button" tabindex="0">1-1</div>
+        <div style="height: 12px;"></div>
+        <div class="chat-empty" id="chatSidebarEmpty">(chưa có dữ liệu)</div>
+      </div>
+      <div class="chat-main">
+        <div class="chat-list" id="chatMessages"></div>
+        <form class="chat-compose" id="chatComposeForm">
+          <input class="chat-input" id="chatInput" type="text" placeholder="Nhập tin nhắn..." maxlength="500" />
+          <button class="btn btn-primary btn-sm chat-send" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
+
+
+
